@@ -102,6 +102,7 @@ IF EXIST "%DEPLOYMENT_TARGET%\package.json" (
   pushd "%DEPLOYMENT_TARGET%"
   call :ExecuteCmd !NPM_CMD! install --production
   call .\node_modules\.bin\jspm install
+  call :ExecuteCmd !NPM_CMD! install gulp
   IF !ERRORLEVEL! NEQ 0 goto error
   call :ExecuteCmd !NPM_CMD! start
   popd
