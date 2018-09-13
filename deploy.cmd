@@ -100,11 +100,11 @@ call :SelectNodeVersion
 :: 3. Install npm packages
 IF EXIST "%DEPLOYMENT_TARGET%\package.json" (
   pushd "%DEPLOYMENT_TARGET%"
-  call :ExecuteCmd !NPM_CMD! install --production
+  call :ExecuteCmd !NPM_CMD! --scripts-prepend-node-path D:\Program Files (x86)\nodejs\9.4.0\node.exe install --production
   call .\node_modules\.bin\jspm install
-  call :ExecuteCmd !NPM_CMD! install gulp
+  call :ExecuteCmd !NPM_CMD! --scripts-prepend-node-path D:\Program Files (x86)\nodejs\9.4.0\node.exe install gulp
   IF !ERRORLEVEL! NEQ 0 goto error
-  call :ExecuteCmd !NPM_CMD! start
+  call :ExecuteCmd !NPM_CMD! --scripts-prepend-node-path D:\Program Files (x86)\nodejs\9.4.0\node.exe start
   popd
 )
 
